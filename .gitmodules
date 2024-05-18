@@ -4,3 +4,6 @@
 [submodule "TradableCelestial"]
 	path = TradableCelestial
 	url = https://github.com/dk-chrono-ark-plugins/ChronoArk.TradableCelestial
+[submodule "Ultrawide"]
+	path = Ultrawide
+	url = https://github.com/dk-chrono-ark-plugins/ChronoArk.Ultrawide
