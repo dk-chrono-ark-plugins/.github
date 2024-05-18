@@ -1,0 +1,3 @@
+[submodule "DragToCast"]
+	path = DragToCast
+	url = https://github.com/dk-chrono-ark-plugins/ChronoArk.DragToCast
