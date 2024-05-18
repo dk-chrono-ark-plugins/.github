@@ -7,3 +7,6 @@
 [submodule "Ultrawide"]
 	path = Ultrawide
 	url = https://github.com/dk-chrono-ark-plugins/ChronoArk.Ultrawide
+[submodule "DragToEquip"]
+	path = DragToEquip
+	url = https://github.com/dk-chrono-ark-plugins/ChronoArk.DragToEquip
