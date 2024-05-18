@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradableCelestial", "Tradab
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordRpc", "DiscordRpc\DiscordRpc\DiscordRpc.csproj", "{56A0D705-D25B-4271-9297-E277DBA737C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragToEquip", "DragToEquip\DragToEquip\DragToEquip.csproj", "{88B082EE-CE26-47DF-BA00-E6086AF69700}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{56A0D705-D25B-4271-9297-E277DBA737C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56A0D705-D25B-4271-9297-E277DBA737C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56A0D705-D25B-4271-9297-E277DBA737C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88B082EE-CE26-47DF-BA00-E6086AF69700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B082EE-CE26-47DF-BA00-E6086AF69700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88B082EE-CE26-47DF-BA00-E6086AF69700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88B082EE-CE26-47DF-BA00-E6086AF69700}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
