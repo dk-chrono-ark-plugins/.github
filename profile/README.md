@@ -10,6 +10,7 @@ Feature Complete:
 
 Usable, Planned Rework:
 - [Ultrawide](https://github.com/dk-chrono-ark-plugins/ChronoArk.Ultrawide)
+- [Encyclopedia Extended](https://github.com/dk-chrono-ark-plugins/ChronoArk.EncyclopediaExtended)
 
 
 Unfinished, TBD:
