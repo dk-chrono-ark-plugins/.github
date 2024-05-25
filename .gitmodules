@@ -10,3 +10,6 @@
 [submodule "DragToEquip"]
 	path = DragToEquip
 	url = https://github.com/dk-chrono-ark-plugins/ChronoArk.DragToEquip
+[submodule "EncyclopediaExtended"]
+	path = EncyclopediaExtended
+	url = https://github.com/dk-chrono-ark-plugins/ChronoArk.EncyclopediaExtended
