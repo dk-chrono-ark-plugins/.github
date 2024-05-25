@@ -1,29 +1,26 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using Object = UnityEngine.Object;
 
 namespace ChronoArkMod.Helper;
 
-#nullable enable
-
-internal static class TextureBlitter
+public static class TextureBlitter
 {
     private static readonly Dictionary<string, Texture2D> _cached = [];
 
     /// <summary>
-    /// Blit a new Texture2D from a packed texture atlas with given rect.
+    ///     Blit a new Texture2D from a packed texture atlas with given rect.
     /// </summary>
     /// <param name="sourceTexture">packed texture atlas</param>
     /// <param name="textureRect">dst rect</param>
     /// <returns>Unpacked Texture2D from atlas. Result is cached.</returns>
-    internal static Texture2D Blit(this Texture2D sourceTexture, Rect textureRect)
+    public static Texture2D Blit(this Texture2D sourceTexture, Rect textureRect)
     {
-        var id = sourceTexture.name + textureRect.ToString();
+        var id = sourceTexture.name + textureRect;
         if (_cached.TryGetValue(id, out var cachedTexture)) {
             return cachedTexture;
         }
 
         var textureToReadFrom = sourceTexture;
-        bool createdTemporaryTexture = false;
+        var createdTemporaryTexture = false;
 
         if (!sourceTexture.isReadable) {
             var renderTexture = RenderTexture.GetTemporary(
@@ -38,8 +35,8 @@ internal static class TextureBlitter
             var backup = RenderTexture.active;
             RenderTexture.active = renderTexture;
 
-            textureToReadFrom = new Texture2D(sourceTexture.width, sourceTexture.height);
-            textureToReadFrom.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+            textureToReadFrom = new(sourceTexture.width, sourceTexture.height);
+            textureToReadFrom.ReadPixels(new(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             textureToReadFrom.Apply();
 
             RenderTexture.active = backup;
@@ -52,7 +49,7 @@ internal static class TextureBlitter
         var y = Mathf.FloorToInt(textureRect.y);
         var width = Mathf.FloorToInt(textureRect.width);
         var height = Mathf.FloorToInt(textureRect.height);
-        var subTexture = new Texture2D(width, height, TextureFormat.ARGB32, false);
+        Texture2D subTexture = new(width, height, TextureFormat.ARGB32, false);
 
         subTexture.SetPixels(textureToReadFrom.GetPixels(x, y, width, height));
         subTexture.Apply();

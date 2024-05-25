@@ -1,41 +1,38 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿namespace ChronoArkMod.Helper;
 
-namespace ChronoArkMod.Helper;
-
-#nullable enable
-
-internal static class ChildrenIterator
+public static class ChildrenIterator
 {
-    internal static IEnumerable<Transform> GetAllChildren(this Transform parent, bool active = false)
+    public static IEnumerable<Transform> GetAllChildren(this Transform parent, bool active = false)
     {
         for (var i = 0; i < parent.childCount; ++i) {
             var child = parent.GetChild(i);
             if (active && !child.gameObject.activeInHierarchy) {
                 continue;
             }
+
             yield return child;
         }
     }
 
-    internal static Transform? GetFirstChildWithName(this Transform parent, string name)
+    public static Transform? GetFirstChildWithName(this Transform parent, string name)
     {
         var children = parent
             .GetAllChildren()
             .Where(t => t.name == name);
-        return children.Any() ? children.First() : null;
+        var transforms = children.ToList();
+        return transforms.Any() ? transforms.First() : null;
     }
 
-    internal static Transform? GetFirstNestedChildWithName(this Transform parent, string name)
+    public static Transform? GetFirstNestedChildWithName(this Transform parent, string name)
     {
-        Transform? child = parent;
+        var child = parent;
         foreach (var hierarchy in name.Split('/')) {
             child = child.GetFirstChildWithName(hierarchy);
-            if (child == null) {
+            if (child is null) {
                 break;
             }
         }
+
         return child;
     }
 }

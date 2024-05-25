@@ -3,9 +3,10 @@ using UnityEngine.EventSystems;
 
 namespace ChronoArkMod.Helper;
 
-internal static class EventTriggerMerge
+public static class EventTriggerMerge
 {
-    internal static void AddOrMergeTrigger(this EventTrigger eventTrigger, EventTriggerType type, UnityAction<BaseEventData> action)
+    public static void AddOrMergeTrigger(this EventTrigger eventTrigger, EventTriggerType type,
+        UnityAction<BaseEventData> action)
     {
         foreach (var trigger in eventTrigger.triggers) {
             if (type == trigger.eventID) {
@@ -14,7 +15,7 @@ internal static class EventTriggerMerge
             }
         }
 
-        var entry = new EventTrigger.Entry() { eventID = type };
+        EventTrigger.Entry entry = new() { eventID = type };
         entry.callback.AddListener(action);
         eventTrigger.triggers.Add(entry);
     }

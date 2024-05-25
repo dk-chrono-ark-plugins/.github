@@ -1,31 +1,36 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using System.Collections;
 
 namespace ChronoArkMod.Helper;
 
-internal static class DeferredCoroutine
+public static class DeferredCoroutine
 {
-    internal static Coroutine StartDeferredCoroutine(this MonoBehaviour instance, Action action, int frames = 1)
+    private static readonly List<(Action action, Func<bool> condition)> _deferredAwaiters = [];
+    private static Coroutine? _awaiter;
+    private static bool _halt;
+
+    public static void StartDeferredCoroutine(this MonoBehaviour instance, Action action, int frames = 1)
     {
-        return instance.StartCoroutine(DeferredFrames(action, frames));
+        instance.StartCoroutine(DeferredFrames(action, frames));
     }
 
-    internal static Coroutine StartDeferredCoroutine(this MonoBehaviour instance, Action action, float seconds)
+    public static void StartDeferredCoroutine(this MonoBehaviour instance, Action action, float seconds)
     {
-        return instance.StartCoroutine(DeferredSeconds(action, seconds));
+        instance.StartCoroutine(DeferredSeconds(action, seconds));
     }
 
-    internal static Coroutine StartDeferredCoroutine(this MonoBehaviour instance, Action action, Func<bool> predicate)
+    public static void StartDeferredCoroutine(this MonoBehaviour instance, Action action, Func<bool> condition)
     {
-        return instance.StartCoroutine(DeferredAwaiter(action, predicate));
+        _halt = false;
+        _awaiter ??= instance.StartCoroutine(DeferredAwaiter(1));
+        _deferredAwaiters.Add((action, condition));
     }
 
     private static IEnumerator DeferredFrames(Action action, int frames = 1)
     {
-        for (int i = 0; i < frames; ++i) {
+        for (var i = 0; i < frames; ++i) {
             yield return null;
         }
+
         action();
     }
 
@@ -35,9 +40,20 @@ internal static class DeferredCoroutine
         action();
     }
 
-    private static IEnumerator DeferredAwaiter(Action action, Func<bool> predicate)
+    private static IEnumerator DeferredAwaiter(int frames)
     {
-        yield return new WaitUntil(predicate);
-        action();
+        while (!_halt) {
+            for (var i = _deferredAwaiters.Count - 1; i >= 0; --i) {
+                var (action, condition) = _deferredAwaiters[i];
+                if (condition()) {
+                    action();
+                    _deferredAwaiters.RemoveAt(i);
+                }
+            }
+
+            for (var i = 0; i < frames; ++i) {
+                yield return null;
+            }
+        }
     }
 }

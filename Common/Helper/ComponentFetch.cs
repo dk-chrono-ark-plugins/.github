@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using Object = UnityEngine.Object;
 
 namespace ChronoArkMod.Helper;
 
@@ -12,18 +12,37 @@ internal static class ComponentFetch
     public static bool TryGetComponent<T>(this GameObject gameObject, out T component) where T : Component
     {
         component = gameObject.GetComponent<T>();
-        return component != null;
+        return component;
     }
 
     public static bool TryGetComponentInParent<T>(this GameObject gameObject, out T component) where T : Component
     {
         component = gameObject.GetComponentInParent<T>();
-        return component != null;
+        return component;
     }
 
     public static bool TryGetComponentInChildren<T>(this GameObject gameObject, out T component) where T : Component
     {
         component = gameObject.GetComponentInChildren<T>();
-        return component != null;
+        return component;
+    }
+
+    public static bool TryFindObject<T>(string name, out T? obj) where T : Object
+    {
+        foreach (var go in Resources.FindObjectsOfTypeAll<T>()) {
+            go.hideFlags = go.hideFlags switch {
+                HideFlags.HideAndDontSave => HideFlags.DontSave,
+                HideFlags.HideInHierarchy => HideFlags.None,
+                _ => go.hideFlags,
+            };
+
+            if (go.name == name) {
+                obj = go;
+                return true;
+            }
+        }
+
+        obj = null;
+        return false;
     }
 }
