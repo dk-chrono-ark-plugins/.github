@@ -1,7 +1,7 @@
 ﻿using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace ChronoArkMod.Helper;
+namespace Mcm.Helper;
 
 public static class EventTriggerMerge
 {

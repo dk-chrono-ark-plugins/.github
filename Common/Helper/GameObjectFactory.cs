@@ -1,4 +1,4 @@
-﻿namespace ChronoArkMod.Helper;
+﻿namespace Mcm.Helper;
 
 public static class GameObjectFactory
 {
@@ -72,6 +72,7 @@ public static class GameObjectFactory
         rect.anchorMax = Vector2.one;
         rect.offsetMin = Vector2.zero;
         rect.offsetMax = Vector2.zero;
+        rect.sizeDelta = Vector2.zero;
     }
 
     public static RectTransform AttachRectTransformObject(this Transform parent, string name, bool center = true)

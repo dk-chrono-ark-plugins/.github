@@ -1,6 +1,6 @@
 ﻿using Object = UnityEngine.Object;
 
-namespace ChronoArkMod.Helper;
+namespace Mcm.Helper;
 
 public static class TextureBlitter
 {

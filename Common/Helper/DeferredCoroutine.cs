@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace ChronoArkMod.Helper;
+namespace Mcm.Helper;
 
 public static class DeferredCoroutine
 {
@@ -45,10 +45,17 @@ public static class DeferredCoroutine
         while (!_halt) {
             for (var i = _deferredAwaiters.Count - 1; i >= 0; --i) {
                 var (action, condition) = _deferredAwaiters[i];
-                if (condition()) {
-                    action();
-                    _deferredAwaiters.RemoveAt(i);
+                if (!condition()) {
+                    continue;
                 }
+
+                action();
+                _deferredAwaiters.RemoveAt(i);
+            }
+
+            if (_deferredAwaiters.Count == 0) {
+                _awaiter = null;
+                yield break;
             }
 
             for (var i = 0; i < frames; ++i) {

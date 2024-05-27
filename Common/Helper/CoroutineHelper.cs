@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 
-namespace ChronoArkMod.Helper;
+namespace Mcm.Helper;
 
-internal class CoroutineHelper : MonoBehaviour
+public class CoroutineHelper : MonoBehaviour
 {
     private static readonly Lazy<CoroutineHelper> _instance = new(() => {
         if (!ComponentFetch.TryFindObject<CoroutineHelper>("CoroutineHelper", out var globalHelper) ||

@@ -1,4 +1,4 @@
-﻿namespace ChronoArkMod.Helper;
+﻿namespace Mcm.Helper;
 
 public static class ChildrenIterator
 {
