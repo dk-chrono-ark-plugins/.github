@@ -13,3 +13,6 @@
 [submodule "EncyclopediaExtended"]
 	path = EncyclopediaExtended
 	url = https://github.com/dk-chrono-ark-plugins/ChronoArk.EncyclopediaExtended
+[submodule "ModConfigurationMenu"]
+	path = ModConfigurationMenu
+	url = https://github.com/dk-chrono-ark-plugins/ChronoArk.MCM
