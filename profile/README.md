@@ -5,6 +5,7 @@ Some chrono ark plugins made for funzies.
 Feature Complete:
 - [Drag To Cast](https://github.com/dk-chrono-ark-plugins/ChronoArk.DragToCast)
 - [Drag To Equip](https://github.com/dk-chrono-ark-plugins/ChronoArk.DragToEquip)
+- [Mod Configuration Menu](https://github.com/dk-chrono-ark-plugins/ChronoArk.MCM)
 - [Tradable Celestial](https://github.com/dk-chrono-ark-plugins/ChronoArk.TradableCelestial)
 
 
@@ -15,4 +16,3 @@ Usable, Planned Rework:
 
 Unfinished, TBD:
 - [DiscordRpc](//..)
-- [Mod Configuration Menu](//..)
